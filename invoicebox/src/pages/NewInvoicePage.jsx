@@ -76,7 +76,7 @@ export default function NewInvoicePage({ setPage }) {
 
       <div className="card" style={{ marginBottom: 18 }}>
         <h3 style={{ marginBottom: 16 }}>Invoice details</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+        <div className="card-grid-3">
           <div>
             <label>Assign to purchaser</label>
             <select className="select" value={purchaserId} onChange={e => { setPurchaserId(e.target.value); setErrors(p => ({ ...p, purchaserId: '' })); }}>

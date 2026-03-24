@@ -2,6 +2,7 @@
   "name": "invoicebox",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://PrinceBadru.github.io/InvoiceBox",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

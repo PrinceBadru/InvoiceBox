@@ -55,6 +55,7 @@ function NotifPanel({ userId, notifications, onClose, markRead }) {
 export default function AppShell({ page, setPage, children }) {
   const { currentUser, logout, notifications, markNotifsRead } = useApp();
   const [showNotifs, setShowNotifs] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const myNotifs  = notifications.filter(n => n.userId === currentUser.id);
   const unreadCnt = myNotifs.filter(n => !n.read).length;
@@ -69,9 +70,14 @@ export default function AppShell({ page, setPage, children }) {
   };
 
   return (
-    <div className="app-layout" onClick={() => showNotifs && setShowNotifs(false)}>
+    <div className="app-layout" onClick={() => { if(showNotifs) setShowNotifs(false); }}>
+      {/* ── Mobile Backdrop ──────────────────────────────────────── */}
+      {mobileMenuOpen && (
+        <div className="modal-backdrop" style={{ zIndex: 900 }} onClick={() => setMobileMenuOpen(false)} />
+      )}
+
       {/* ── Sidebar ──────────────────────────────────────────── */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <div style={{ padding: '18px 16px 12px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--blue)', letterSpacing: '-0.3px' }}>InvoiceBox</div>
           <div style={{ fontSize: 10, color: 'var(--text-3)', marginTop: 2, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -82,7 +88,7 @@ export default function AppShell({ page, setPage, children }) {
         <nav style={{ flex: 1, padding: '10px 0' }}>
           {navItems.map(item => (
             <div key={item.id} className={`nav-item ${page === item.id ? 'active' : ''}`}
-              onClick={() => setPage(item.id)}>
+              onClick={() => { setPage(item.id); setMobileMenuOpen(false); }}>
               <span style={{ fontSize: 14, width: 16, textAlign: 'center' }}>{item.icon}</span>
               {item.label}
             </div>
@@ -106,6 +112,9 @@ export default function AppShell({ page, setPage, children }) {
       {/* ── Main area ────────────────────────────────────────── */}
       <div className="main-area">
         <header className="topbar" style={{ position: 'relative' }}>
+          <button className="btn btn-ghost btn-icon mobile-menu-btn" onClick={(e) => { e.stopPropagation(); setMobileMenuOpen(true); }} style={{ marginRight: 8 }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
           <div style={{ flex: 1, fontSize: 14, fontWeight: 500, color: 'var(--text-2)' }}>
             {navItems.find(n => n.id === page)?.label || 'InvoiceBox'}
           </div>

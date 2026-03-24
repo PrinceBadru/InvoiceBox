@@ -76,7 +76,7 @@ export function ProviderDashboard({ setPage }) {
         <StatCard label="Defaulted"         value={(stats.statusCounts['DEFAULTED'] || 0).toLocaleString()} sub="Declared by purchasers" accent="#F59E0B" />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 18, marginBottom: 24 }}>
+      <div className="dashboard-grid">
         {/* Trend chart */}
         <div className="card">
           <h3 style={{ marginBottom: 16 }}>Invoice activity — last 12 months</h3>
@@ -191,7 +191,7 @@ export function PurchaserDashboard({ setPage }) {
         <StatCard label="Balance owed (UGX)" value={'UGX ' + Math.round(stats.balUGX).toLocaleString()} sub={`+ $ ${stats.balUSD.toFixed(2)} USD`} accent="#7C3AED" />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 18, marginBottom: 24 }}>
+      <div className="dashboard-grid">
         <div className="card">
           <h3 style={{ marginBottom: 16 }}>Payments made — last 12 months (USD equiv.)</h3>
           <ResponsiveContainer width="100%" height={200}>

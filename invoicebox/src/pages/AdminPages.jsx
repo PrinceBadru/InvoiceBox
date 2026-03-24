@@ -70,7 +70,7 @@ export function AdminDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 18, marginBottom: 24 }}>
+      <div className="dashboard-grid">
         <div className="card">
           <h3 style={{ marginBottom: 16 }}>Invoice volume — monthly</h3>
           <ResponsiveContainer width="100%" height={220}>
@@ -103,7 +103,7 @@ export function AdminDashboard() {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+      <div className="card-grid-2" style={{ marginBottom: 24 }}>
         <div className="card">
           <h3 style={{ marginBottom: 16 }}>Top 10 invoice categories</h3>
           <ResponsiveContainer width="100%" height={260}>
@@ -240,7 +240,7 @@ export function SettingsPage() {
   return (
     <div>
       <div className="section-header"><h2>Platform settings</h2></div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+      <div className="card-grid-2">
         <div className="card">
           <h3 style={{ marginBottom: 14 }}>Goods & service categories</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
